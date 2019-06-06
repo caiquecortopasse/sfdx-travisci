@@ -24,4 +24,4 @@ script:
 - jar -cfM release.zip tmp_convert
 - rm -rf tmp_convert
 - sfdx force:mdapi:deploy -w -1 --zipfile release.zip --targetusername ra.tien@curious-raccoon-awy5eo.com 
-- rmdir -Recurse release.zip
+- rm -rf release.zip

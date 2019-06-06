@@ -20,5 +20,8 @@ before_install:
 - sfdx force:auth:jwt:grant --clientid 3MVG9KsVczVNcM8wazkGcZ1u7YplZe2a5OCXxKpdTwfB17Fo8ppFuKOqG2SZrkgVJ4JMffoEMJWLvdvXERBVi --jwtkeyfile assets/server.key --username ra.tien@curious-raccoon-awy5eo.com --setdefaultdevhubusername -a HubOrg
 
 script:
-- sfdx force:org:list
-- git branch
+- sfdx force:source:convert --rootdir force-app --outputdir tmp_convert
+- jar -cfM release.zip tmp_convert
+- rmdir -Recurse tmp_convert
+- sfdx force:mdapi:deploy --zipfile release.zip --targetusername ra.tien@curious-raccoon-awy5eo.com -wait 10
+- rmdir -Recurse release.zip

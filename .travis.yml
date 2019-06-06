@@ -17,7 +17,11 @@ before_install:
 - export PATH=./sfdx/$(pwd):$PATH
 - sfdx --version
 - sfdx plugins --core
-- sfdx force:auth:jwt:grant --clientid 3MVG9KsVczVNcM8wazkGcZ1u7YplZe2a5OCXxKpdTwfB17Fo8ppFuKOqG2SZrkgVJ4JMffoEMJWLvdvXERBVi --jwtkeyfile assets/server.key --username ra.tien@curious-raccoon-awy5eo.com --setdefaultdevhubusername -a HubOrg
+- sfdx force:auth:jwt:grant --clientid 3MVG9ZF4bs_.MKug.Z41A6UVB47fQYpGA79QrwhjX4H2iVmFzz2ATAYMxxrKeEFHdKgff7mwtrCGElobpIMmL --username ra.tien@brave-hawk-e5h2bi.com --jwtkeyfile assets/server.key --setdefaultdevhubusername
 
 script:
-- sfdx force:org:list
+- sfdx force:source:convert --rootdir force-app --outputdir tmp_convert
+- jar -cfM release.zip tmp_convert
+- rm -rf tmp_convert
+- sfdx force:mdapi:deploy -w -1 --zipfile release.zip --targetusername ra.tien@brave-hawk-e5h2bi.com 
+- rm -rf release.zip

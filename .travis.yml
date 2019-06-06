@@ -21,7 +21,7 @@ before_install:
 
 
 
-#script para rodar quando vier da branch de developer
+#script para rodar quando vier da branch de develope
 if [ "$TRAVIS_BRANCH" == "Developer" ]; then
 script:
 - sfdx force:source:convert --rootdir force-app --outputdir tmp_convert

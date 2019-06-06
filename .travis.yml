@@ -19,11 +19,6 @@ before_install:
 - sfdx plugins --core
 - sfdx force:auth:jwt:grant --clientid 3MVG9KsVczVNcM8wazkGcZ1u7YplZe2a5OCXxKpdTwfB17Fo8ppFuKOqG2SZrkgVJ4JMffoEMJWLvdvXERBVi --jwtkeyfile assets/server.key --username ra.tien@curious-raccoon-awy5eo.com --setdefaultdevhubusername -a HubOrg
 
-
-stages: 
-name: Developer
-#script para rodar quando vier da branch de developer
-if: branch = Developer 
 script:
 - sfdx force:source:convert --rootdir force-app --outputdir tmp_convert
 - jar -cfM release.zip tmp_convert
